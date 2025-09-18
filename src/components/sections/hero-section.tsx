@@ -12,16 +12,15 @@ export function HeroSection() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 content-wrapper">
         <div className="max-w-2xl text-left">
           <h1 className="font-headline text-5xl font-extrabold uppercase tracking-tight text-white drop-shadow-lg sm:text-6xl md:text-7xl">
-            <span className="block text-glow">
-              Transforma tu negocio
-            </span>
             <span className="block text-primary text-glow">
-              con letreros de neón impactantes
+              Letreros de Neón
+            </span>
+            <span className="block text-glow">
+              para tu Negocio
             </span>
           </h1>
           <p className="mt-6 max-w-lg text-lg text-gray-200 md:text-xl">
-            Creamos soluciones visuales personalizadas que elevan tu marca y
-            atraen más clientes.
+            Eleva tu marca y atrae más clientes con un diseño único.
           </p>
           <div className="mt-10">
             <Button asChild size="lg" className="group">
