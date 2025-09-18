@@ -10,6 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { createHash } from 'crypto';
 
 const AiDesignSuggestionsInputSchema = z.object({
   prompt: z.string().describe('A freeform description of the business, product, desired mood, and any ideas the user has.'),
@@ -56,19 +57,17 @@ const aiDesignSuggestionsFlow = ai.defineFlow(
     outputSchema: AiDesignSuggestionsOutputSchema,
   },
   async input => {
-    const [suggestionsResponse, imageResponse] = await Promise.all([
-      suggestionsPrompt(input),
-      ai.generate({
-        model: 'googleai/imagen-4.0-fast-generate-001',
-        prompt: `Generate a high-quality, photorealistic image of a neon LED sign based on the following description. The sign should be the main focus, well-lit, and in an appropriate setting (like a store, office, or cafe wall). Description: ${input.prompt}`,
-        config: {
-          aspectRatio: '1:1',
-        },
-      }),
-    ]);
-
+    // Generate a unique seed from the prompt for the placeholder image
+    const hash = createHash('md5').update(input.prompt).digest('hex');
+    const seed = parseInt(hash.substring(0, 8), 16);
+    const imageUrl = `https://picsum.photos/seed/${seed}/600/600`;
+    
+    // Get text-based suggestions from the AI
+    const suggestionsResponse = await suggestionsPrompt(input);
     const suggestions = suggestionsResponse.output!;
-    const imageUrl = imageResponse.media.url;
+
+    // Simulate a delay for image generation to feel more realistic
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     return {
       ...suggestions,
