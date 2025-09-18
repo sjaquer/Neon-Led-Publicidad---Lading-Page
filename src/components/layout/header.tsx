@@ -19,25 +19,27 @@ export function Header() {
           </Link>
         </div>
 
-        <nav className="hidden md:flex flex-grow items-center justify-center gap-6">
+        <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                link.href === '#' ? 'text-primary text-glow' : 'text-muted-foreground'
+              }`}
             >
               {link.label}
             </Link>
           ))}
+           <Button asChild variant="ghost">
+            <Link href="#">Login</Link>
+          </Button>
         </nav>
 
-        <div className="flex items-center justify-end">
-          <Button asChild className="hidden md:flex">
-            <Link href="#contact-form">Cotiza Ahora</Link>
-          </Button>
+        <div className="flex items-center justify-end md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden">
+              <Button variant="outline" size="icon">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Abrir menú</span>
               </Button>
@@ -56,8 +58,8 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                <Button asChild className="mt-4">
-                  <Link href="#contact-form">Cotiza Ahora</Link>
+                 <Button asChild variant="ghost" className="mt-4">
+                  <Link href="#">Login</Link>
                 </Button>
               </div>
             </SheetContent>

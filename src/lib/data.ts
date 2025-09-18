@@ -8,15 +8,15 @@ export const navLinks = [
     href: '#why-choose-us',
   },
   {
-    label: 'Galería',
+    label: 'Productos',
     href: '#design-showcase',
-  },
-  {
-    label: 'Proceso',
-    href: '#purchase-process',
   },
   {
     label: 'Contacto',
     href: '#contact-form',
+  },
+  {
+    label: 'Blog',
+    href: '#',
   },
 ];
