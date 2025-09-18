@@ -1,3 +1,113 @@
+
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "Abstract neon lights background for the hero section",
+      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
+      "imageHint": "neon background"
+    },
+    {
+      "id": "showcase-business-1",
+      "description": "Neon sign in a modern cafe",
+      "imageUrl": "https://picsum.photos/seed/b1/600/800",
+      "imageHint": "neon cafe"
+    },
+    {
+      "id": "showcase-business-2",
+      "description": "Neon logo in a corporate office lobby",
+      "imageUrl": "https://picsum.photos/seed/b2/600/800",
+      "imageHint": "neon office"
+    },
+    {
+      "id": "showcase-business-3",
+      "description": "Open neon sign for a retail store",
+      "imageUrl": "https://picsum.photos/seed/b3/600/800",
+      "imageHint": "neon store"
+    },
+    {
+      "id": "showcase-business-4",
+      "description": "Neon art in a stylish bar",
+      "imageUrl": "https://picsum.photos/seed/b4/600/800",
+      "imageHint": "neon bar"
+    },
+    {
+      "id": "showcase-personal-1",
+      "description": "Custom neon name sign in a bedroom",
+      "imageUrl": "https://picsum.photos/seed/p1/600/800",
+      "imageHint": "neon bedroom"
+    },
+    {
+      "id": "showcase-personal-2",
+      "description": "Neon quote sign in a living room",
+      "imageUrl": "https://picsum.photos/seed/p2/600/800",
+      "imageHint": "neon livingroom"
+    },
+    {
+      "id": "showcase-personal-3",
+      "description": "'Game on' neon sign for a gaming setup",
+      "imageUrl": "https://picsum.photos/seed/p3/600/800",
+      "imageHint": "neon gaming"
+    },
+    {
+      "id": "showcase-personal-4",
+      "description": "Neon sign for a wedding event",
+      "imageUrl": "https://picsum.photos/seed/p4/600/800",
+      "imageHint": "neon wedding"
+    },
+    {
+      "id": "testimonial-client-1",
+      "description": "Photo of a happy client",
+      "imageUrl": "https://picsum.photos/seed/tc1/100/100",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "testimonial-logo-1",
+      "description": "Logo of the client's company",
+      "imageUrl": "https://picsum.photos/seed/tl1/100/40",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "testimonial-client-2",
+      "description": "Photo of another happy client",
+      "imageUrl": "https://picsum.photos/seed/tc2/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "testimonial-logo-2",
+      "description": "Logo of the client's company",
+      "imageUrl": "https://picsum.photos/seed/tl2/100/40",
+      "imageHint": "tech logo"
+    },
+    {
+      "id": "testimonial-client-3",
+      "description": "Photo of a third happy client",
+      "imageUrl": "https://picsum.photos/seed/tc3/100/100",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "social-1",
+      "description": "Instagram post showing a new neon project",
+      "imageUrl": "https://picsum.photos/seed/s1/500/500",
+      "imageHint": "neon sign"
+    },
+    {
+      "id": "social-2",
+      "description": "Instagram post showing a neon sign detail",
+      "imageUrl": "https://picsum.photos/seed/s2/500/500",
+      "imageHint": "neon light"
+    },
+    {
+      "id": "social-3",
+      "description": "Instagram post of a happy customer with their sign",
+      "imageUrl": "https://picsum.photos/seed/s3/500/500",
+      "imageHint": "happy customer"
+    },
+    {
+      "id": "social-4",
+      "description": "Instagram post about a custom design",
+      "imageUrl": "https://picsum.photos/seed/s4/500/500",
+      "imageHint": "custom design"
+    }
+  ]
 }
