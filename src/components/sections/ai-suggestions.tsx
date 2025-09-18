@@ -103,7 +103,7 @@ export function AiSuggestions() {
           </p>
         </div>
         <div className="mt-12 max-w-2xl mx-auto">
-          <Card>
+          <Card className="neumorphic-flat bg-transparent">
             <CardHeader>
               <CardTitle className="font-headline text-xl">
                 Generador de Ideas
@@ -125,6 +125,7 @@ export function AiSuggestions() {
                           <Textarea
                             placeholder="Ej: Cafetería moderna para jóvenes profesionales"
                             {...field}
+                            className="bg-transparent neumorphic-pressed"
                           />
                         </FormControl>
                         <FormMessage />
@@ -141,6 +142,7 @@ export function AiSuggestions() {
                           <Textarea
                             placeholder="Ej: Vendemos café de especialidad y pastelería artesanal"
                             {...field}
+                             className="bg-transparent neumorphic-pressed"
                           />
                         </FormControl>
                         <FormMessage />
@@ -157,6 +159,7 @@ export function AiSuggestions() {
                           <Textarea
                             placeholder="Ej: Un ambiente acogedor y vibrante, ideal para fotos de Instagram"
                             {...field}
+                             className="bg-transparent neumorphic-pressed"
                           />
                         </FormControl>
                         <FormMessage />
@@ -195,7 +198,7 @@ export function AiSuggestions() {
               </h3>
               <div className="grid gap-6 sm:grid-cols-2">
                 {suggestionCards.map((card, index) => (
-                  <Card key={index} className="flex flex-col">
+                  <Card key={index} className="flex flex-col neumorphic-flat bg-transparent">
                     <CardHeader className="flex-row items-center gap-4 space-y-0">
                       <card.icon className="w-8 h-8 text-primary" />
                       <CardTitle className="font-headline text-lg">

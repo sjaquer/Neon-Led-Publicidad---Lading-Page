@@ -105,7 +105,7 @@ export function MultiStepContactForm() {
 
   if (isSubmitted) {
     return (
-      <Card className="p-8 text-center">
+      <Card className="p-8 text-center neumorphic-flat bg-transparent">
         <CheckCircle className="mx-auto h-16 w-16 text-green-500" />
         <h3 className="mt-4 font-headline text-2xl font-bold">¡Solicitud Enviada!</h3>
         <p className="mt-2 text-muted-foreground">
@@ -117,7 +117,7 @@ export function MultiStepContactForm() {
   }
 
   return (
-    <Card>
+    <Card className="neumorphic-flat bg-transparent">
       <CardContent className="p-6">
         <Progress value={isSubmitted ? 100 : progress} className="mb-6 h-2" />
         <Form {...form}>
@@ -147,7 +147,7 @@ export function MultiStepContactForm() {
                             defaultValue={field.value}
                           >
                             <FormControl>
-                              <SelectTrigger>
+                              <SelectTrigger className="bg-transparent neumorphic-pressed">
                                 <SelectValue placeholder="Selecciona una opción" />
                               </SelectTrigger>
                             </FormControl>
@@ -174,6 +174,7 @@ export function MultiStepContactForm() {
                             <Textarea
                               placeholder="Ej: Quiero el logo de mi empresa en neón para la recepción."
                               {...field}
+                              className="bg-transparent neumorphic-pressed"
                             />
                           </FormControl>
                           <FormMessage />
@@ -187,7 +188,7 @@ export function MultiStepContactForm() {
                         <FormItem>
                            <FormLabel>Adjuntar imagen de referencia</FormLabel>
                           <FormControl>
-                            <Input type="file" onChange={(e) => field.onChange(e.target.files)} />
+                            <Input type="file" onChange={(e) => field.onChange(e.target.files)} className="bg-transparent neumorphic-pressed"/>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -208,7 +209,7 @@ export function MultiStepContactForm() {
                         <FormItem>
                           <FormLabel>Nombre completo</FormLabel>
                           <FormControl>
-                            <Input placeholder="Tu nombre" {...field} />
+                            <Input placeholder="Tu nombre" {...field} className="bg-transparent neumorphic-pressed"/>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -224,6 +225,7 @@ export function MultiStepContactForm() {
                             <Input
                               placeholder="tu@email.com"
                               {...field}
+                              className="bg-transparent neumorphic-pressed"
                             />
                           </FormControl>
                           <FormMessage />
@@ -240,6 +242,7 @@ export function MultiStepContactForm() {
                             <Input
                               placeholder="Tu número de teléfono"
                               {...field}
+                              className="bg-transparent neumorphic-pressed"
                             />
                           </FormControl>
                           <FormMessage />
