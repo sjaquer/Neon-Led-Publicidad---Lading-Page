@@ -24,15 +24,9 @@ import { Loader2, Wand2, Layout, Palette, Tags } from 'lucide-react';
 import { AnimatedTitle } from '../ui/animated-title';
 
 const formSchema = z.object({
-  businessDetails: z
+  prompt: z
     .string()
-    .min(10, 'Por favor, proporciona más detalles sobre tu negocio.'),
-  productInformation: z
-    .string()
-    .min(10, 'Por favor, describe mejor tu producto o servicio.'),
-  desiredMood: z
-    .string()
-    .min(5, 'Por favor, describe el ambiente que deseas crear.'),
+    .min(10, 'Por favor, danos más detalles para generar mejores ideas.'),
 });
 
 export function AiSuggestions() {
@@ -42,9 +36,7 @@ export function AiSuggestions() {
   const form = useForm<AiDesignSuggestionsInput>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      businessDetails: '',
-      productInformation: '',
-      desiredMood: '',
+      prompt: '',
     },
   });
 
@@ -117,55 +109,22 @@ export function AiSuggestions() {
                 >
                   <FormField
                     control={form.control}
-                    name="businessDetails"
+                    name="prompt"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Detalles del Negocio</FormLabel>
+                        <FormLabel>Describe tu negocio, producto o idea</FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Ej: Cafetería moderna para jóvenes profesionales"
+                            placeholder="Ej: Tengo una cafetería moderna para jóvenes profesionales donde vendemos café de especialidad. Quiero un letrero para la pared principal que sea acogedor, vibrante e 'instagrameable'."
                             {...field}
-                            className="bg-transparent neumorphic-pressed"
+                            className="bg-transparent neumorphic-pressed min-h-[120px]"
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="productInformation"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Información del Producto/Servicio</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Ej: Vendemos café de especialidad y pastelería artesanal"
-                            {...field}
-                             className="bg-transparent neumorphic-pressed"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="desiredMood"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Ambiente Deseado</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Ej: Un ambiente acogedor y vibrante, ideal para fotos de Instagram"
-                            {...field}
-                             className="bg-transparent neumorphic-pressed"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  
                   <Button
                     type="submit"
                     disabled={loading}

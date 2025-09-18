@@ -12,9 +12,7 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const AiDesignSuggestionsInputSchema = z.object({
-  businessDetails: z.string().describe('Details about the business, such as industry and target audience.'),
-  productInformation: z.string().describe('Information about the product or service being offered.'),
-  desiredMood: z.string().describe('The desired mood or atmosphere for the space.'),
+  prompt: z.string().describe('A freeform description of the business, product, desired mood, and any ideas the user has.'),
 });
 export type AiDesignSuggestionsInput = z.infer<typeof AiDesignSuggestionsInputSchema>;
 
@@ -34,11 +32,9 @@ const prompt = ai.definePrompt({
   name: 'aiDesignSuggestionsPrompt',
   input: {schema: AiDesignSuggestionsInputSchema},
   output: {schema: AiDesignSuggestionsOutputSchema},
-  prompt: `You are an AI assistant specializing in neon LED design. A user will provide details about their business, product, and desired mood for their space. Based on this information, suggest tailored neon LED design elements, layouts, color schemes, and relevant SEO keywords.
+  prompt: `You are an AI assistant specializing in neon LED design. A user will provide a description of their business, product, desired mood, or general idea for their space. Based on this information, suggest tailored neon LED design elements, layouts, color schemes, and relevant SEO keywords.
 
-Business Details: {{{businessDetails}}}
-Product Information: {{{productInformation}}}
-Desired Mood: {{{desiredMood}}}
+User's Idea: {{{prompt}}}
 
 Provide the suggestions in a clear and concise manner.
 

@@ -16,12 +16,8 @@ import {
   CheckCircle,
   Send,
   Upload,
-  User,
-  Mail,
-  Phone,
-  Building,
 } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Avatar } from '../ui/avatar';
 import { Logo } from '../logo';
 
 const formSchema = z.object({
@@ -198,7 +194,7 @@ export function MultiStepContactForm() {
               <Button
                 key={opt.value}
                 variant="outline"
-                className="bg-background/20"
+                className="bg-background/20 rounded-lg"
                 onClick={() => handleUserInput('signType', opt.value)}
               >
                 {opt.label}
@@ -222,7 +218,7 @@ export function MultiStepContactForm() {
   };
 
   return (
-    <Card className="neumorphic-flat bg-gray-900/50 backdrop-blur-sm border-gray-700/50 w-full max-w-lg mx-auto">
+    <Card className="neumorphic-flat bg-gray-900/50 backdrop-blur-sm border-gray-700/50 w-full max-w-lg mx-auto rounded-xl">
       <CardContent className="p-0">
         <div className="p-4 h-96 flex flex-col space-y-4 overflow-y-auto">
             <AnimatePresence>
@@ -237,16 +233,16 @@ export function MultiStepContactForm() {
                     >
                     {msg.sender === 'bot' && (
                         <Avatar className="w-8 h-8">
-                            <div className="w-full h-full bg-primary flex items-center justify-center rounded-full">
-                                <Logo className="w-6 h-6"/>
+                             <div className="w-full h-full bg-primary flex items-center justify-center rounded-full">
+                                <Logo />
                             </div>
                         </Avatar>
                     )}
                     <div
-                        className={`max-w-xs md:max-w-md rounded-2xl px-4 py-2 text-sm md:text-base ${
+                        className={`max-w-xs md:max-w-md rounded-2xl px-4 py-3 text-sm md:text-base ${
                         msg.sender === 'user'
-                            ? 'bg-blue-600 text-white rounded-br-none'
-                            : 'bg-gray-700 text-gray-200 rounded-bl-none'
+                            ? 'bg-blue-600 text-white rounded-br-lg'
+                            : 'bg-gray-700 text-gray-200 rounded-bl-lg'
                         }`}
                     >
                         {msg.content}
@@ -262,14 +258,14 @@ export function MultiStepContactForm() {
               >
                 <Avatar className="w-8 h-8">
                      <div className="w-full h-full bg-primary flex items-center justify-center rounded-full">
-                        <Logo className="w-6 h-6"/>
+                        <Logo/>
                     </div>
                 </Avatar>
-                <div className="bg-gray-700 rounded-2xl rounded-bl-none px-4 py-3">
-                    <div className="flex items-center gap-1">
-                        <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce delay-0"></span>
-                        <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce delay-150"></span>
-                        <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce delay-300"></span>
+                <div className="bg-gray-700 rounded-2xl rounded-bl-lg px-4 py-3">
+                    <div className="flex items-center gap-1.5">
+                        <span className="h-1.5 w-1.5 bg-gray-400 rounded-full animate-bounce delay-0"></span>
+                        <span className="h-1.5 w-1.5 bg-gray-400 rounded-full animate-bounce delay-150"></span>
+                        <span className="h-1.5 w-1.5 bg-gray-400 rounded-full animate-bounce delay-300"></span>
                     </div>
                 </div>
             </motion.div>
@@ -308,16 +304,16 @@ const TextInputComponent = ({ field, placeholder, onSend, onSkip, type = 'text',
     };
     
     return (
-        <form onSubmit={handleSend} className="flex items-center gap-2">
+        <form onSubmit={handleSend} className="flex items-center gap-2 p-1">
             <div className="relative flex-grow">
                 <Input
                     type={type}
                     placeholder={placeholder}
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
-                    className="bg-gray-800 border-gray-700 rounded-full pl-4 pr-10 text-white"
+                    className="bg-gray-800 border-gray-600 rounded-lg pl-4 pr-10 text-white"
                 />
-                <Button type="submit" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-blue-600 hover:bg-blue-500">
+                <Button type="submit" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-md bg-blue-600 hover:bg-blue-500">
                     <Send className="h-4 w-4" />
                 </Button>
             </div>
@@ -354,7 +350,7 @@ const FileInputComponent = ({ field, onSend, onSkip, error }: FileInputProps) =>
             <Button
                 type="button"
                 variant="outline"
-                className="flex-grow bg-gray-800 border-gray-700 hover:bg-gray-700"
+                className="flex-grow bg-gray-800 border-gray-700 hover:bg-gray-700 rounded-lg"
                 onClick={() => fileInputRef.current?.click()}
             >
                 <Upload className="mr-2 h-4 w-4" />
