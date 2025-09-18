@@ -10,7 +10,7 @@ import { ContactFormSection } from '@/components/sections/contact-form-section';
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-x-hidden">
       <HeroSection />
       <div className="bg-background">
         <WhyChooseUs />

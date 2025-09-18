@@ -12,11 +12,14 @@ import { navLinks } from '@/lib/data';
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/" aria-label="Página de inicio de NeonLed Studios">
-          <Logo />
-        </Link>
-        <nav className="hidden md:flex items-center gap-6">
+      <div className="container flex h-16 items-center">
+        <div className="flex items-center md:flex-1">
+          <Link href="/" aria-label="Página de inicio de NeonLed Studios">
+            <Logo />
+          </Link>
+        </div>
+
+        <nav className="hidden md:flex flex-1 justify-center items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -27,7 +30,8 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-4">
+
+        <div className="flex items-center justify-end gap-4 md:flex-1">
           <Button asChild className="hidden md:flex">
             <Link href="#contact-form">Cotiza Ahora</Link>
           </Button>
