@@ -2,12 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { ArrowRight } from 'lucide-react';
 
 export function HeroSection() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background');
 
   return (
-    <section className="relative h-[calc(100vh-4rem)] w-full">
+    <section className="relative h-[calc(100vh-4rem)] w-full flex items-center">
       {heroImage && (
         <Image
           src={heroImage.imageUrl}
@@ -18,24 +19,29 @@ export function HeroSection() {
           priority
         />
       )}
-      <div className="absolute inset-0 bg-black/60" />
-      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
-        <h1 className="font-headline text-4xl font-extrabold tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
-          <span className="block drop-shadow-[0_0_8px_hsl(var(--primary))]">
-            Transforma tu negocio
-          </span>
-          <span className="block text-primary drop-shadow-[0_0_8px_hsl(var(--primary))]">
-            con letreros de neón impactantes
-          </span>
-        </h1>
-        <p className="mx-auto mt-6 max-w-lg text-lg text-gray-200 sm:max-w-xl md:text-xl">
-          Creamos soluciones visuales personalizadas que elevan tu marca y
-          atraen más clientes.
-        </p>
-        <div className="mt-10">
-          <Button asChild size="lg" variant="secondary">
-            <Link href="#contact-form">Cotiza tu proyecto</Link>
-          </Button>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl text-left">
+          <h1 className="font-headline text-5xl font-extrabold tracking-tight text-white drop-shadow-lg sm:text-6xl md:text-7xl">
+            <span className="block drop-shadow-[0_0_8px_hsl(var(--primary))]">
+              Transforma tu negocio
+            </span>
+            <span className="block text-primary drop-shadow-[0_0_8px_hsl(var(--primary))]">
+              con letreros de neón impactantes
+            </span>
+          </h1>
+          <p className="mt-6 max-w-lg text-lg text-gray-200 md:text-xl">
+            Creamos soluciones visuales personalizadas que elevan tu marca y
+            atraen más clientes.
+          </p>
+          <div className="mt-10">
+            <Button asChild size="lg" variant="secondary" className="group">
+              <Link href="#contact-form">
+                Cotiza tu proyecto
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>

@@ -3,9 +3,9 @@
   "placeholderImages": [
     {
       "id": "hero-background",
-      "description": "Abstract neon lights background for the hero section",
-      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
-      "imageHint": "neon background"
+      "description": "Modern office space with ambient lighting, suitable for a business-focused hero section",
+      "imageUrl": "https://picsum.photos/seed/corp-hero/1920/1080",
+      "imageHint": "modern office"
     },
     {
       "id": "showcase-business-1",
