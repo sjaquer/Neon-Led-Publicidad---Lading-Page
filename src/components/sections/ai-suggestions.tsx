@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import Image from 'next/image';
 import {
   Form,
   FormControl,
@@ -20,8 +21,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Wand2, Layout, Palette, Tags } from 'lucide-react';
+import { Loader2, Wand2, Layout, Palette, Sparkles, Send } from 'lucide-react';
 import { AnimatedTitle } from '../ui/animated-title';
+import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
   prompt: z
@@ -29,9 +31,17 @@ const formSchema = z.object({
     .min(10, 'Por favor, danos más detalles para generar mejores ideas.'),
 });
 
+// We need a way to pass the image to the contact form
+declare global {
+  interface Window {
+    __DESIGN_IMAGE_TO_QUOTE__: string | null;
+  }
+}
+
 export function AiSuggestions() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<AiDesignSuggestionsOutput | null>(null);
+  const { toast } = useToast();
 
   const form = useForm<AiDesignSuggestionsInput>({
     resolver: zodResolver(formSchema),
@@ -48,16 +58,34 @@ export function AiSuggestions() {
       setResult(response);
     } catch (error) {
       console.error('Error getting AI suggestions:', error);
-      // Here you could use a toast to show an error message
+      toast({
+        variant: 'destructive',
+        title: 'Error al generar sugerencias',
+        description: 'Hubo un problema con la IA. Por favor, intenta de nuevo.',
+      });
     } finally {
       setLoading(false);
     }
   };
 
+  const handleQuoteDesign = () => {
+    if (result?.imageUrl) {
+      // Store the image data in a global variable
+      window.__DESIGN_IMAGE_TO_QUOTE__ = result.imageUrl;
+      
+      // Scroll to the contact form
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+
   const suggestionCards = result
     ? [
         {
-          icon: Wand2,
+          icon: Sparkles,
           title: 'Elementos de Diseño',
           content: result.designElements,
         },
@@ -70,11 +98,6 @@ export function AiSuggestions() {
           icon: Palette,
           title: 'Esquemas de Color',
           content: result.colorSchemeSuggestions,
-        },
-        {
-          icon: Tags,
-          title: 'Palabras Clave SEO',
-          content: result.seoKeywords,
         },
       ]
     : [];
@@ -91,14 +114,14 @@ export function AiSuggestions() {
           </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             ¿No estás seguro por dónde empezar? Describe tu idea y deja que la
-            magia suceda. Te daremos conceptos de diseño personalizados.
+            magia suceda. Nuestro agente de IA visualizará tu concepto.
           </p>
         </div>
-        <div className="mt-12 max-w-2xl mx-auto">
+        <div className="mt-12 max-w-4xl mx-auto">
           <Card className="neumorphic-flat bg-transparent">
             <CardHeader>
               <CardTitle className="font-headline text-xl">
-                Generador de Ideas
+                Agente de Diseño IA
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -136,12 +159,13 @@ export function AiSuggestions() {
                     ) : (
                       <Wand2 className="mr-2 h-4 w-4" />
                     )}
-                    {loading ? 'Generando...' : 'Generar Sugerencias'}
+                    {loading ? 'Generando...' : 'Visualizar mi Idea'}
                   </Button>
                 </form>
               </Form>
             </CardContent>
           </Card>
+
           {loading && (
             <div className="mt-8 text-center">
               <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
@@ -150,25 +174,52 @@ export function AiSuggestions() {
               </p>
             </div>
           )}
+
           {result && (
-            <div className="mt-12 space-y-6">
-              <h3 className="text-center font-headline text-2xl font-bold">
-                ¡Aquí tienes tus sugerencias!
+            <div className="mt-12 space-y-8">
+              <h3 className="text-center font-headline text-3xl font-bold">
+                ¡Aquí tienes tu concepto!
               </h3>
-              <div className="grid gap-6 sm:grid-cols-2">
-                {suggestionCards.map((card, index) => (
-                  <Card key={index} className="flex flex-col neumorphic-flat bg-transparent">
-                    <CardHeader className="flex-row items-center gap-4 space-y-0">
-                      <card.icon className="w-8 h-8 text-primary" />
-                      <CardTitle className="font-headline text-lg">
-                        {card.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{card.content}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="grid gap-8 md:grid-cols-2 md:items-start">
+                {/* Image Column */}
+                <div className="flex flex-col gap-4">
+                   <Card className="neumorphic-flat bg-transparent">
+                     <CardContent className="p-4">
+                        <div className="aspect-square relative w-full overflow-hidden rounded-lg">
+                          <Image 
+                              src={result.imageUrl} 
+                              alt="Diseño de neón generado por IA" 
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        </div>
+                      </CardContent>
+                   </Card>
+                   <Button size="lg" onClick={handleQuoteDesign}>
+                     <Send className="mr-2 h-4 w-4"/>
+                     Cotizar este diseño
+                   </Button>
+                </div>
+
+                {/* Suggestions Column */}
+                <div className="space-y-6">
+                  {suggestionCards.map((card, index) => (
+                    <Card key={index} className="flex flex-col neumorphic-flat bg-transparent">
+                      <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
+                        <div className="flex-shrink-0 bg-primary/10 p-2 rounded-full">
+                           <card.icon className="w-6 h-6 text-primary" />
+                        </div>
+                        <CardTitle className="font-headline text-lg">
+                          {card.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground">{card.content}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
           )}

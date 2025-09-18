@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,6 +20,14 @@ import {
 } from 'lucide-react';
 import { Avatar } from '../ui/avatar';
 import { Logo } from '../logo';
+
+// We need a way to pass the image to the contact form
+declare global {
+  interface Window {
+    __DESIGN_IMAGE_TO_QUOTE__: string | null;
+  }
+}
+
 
 const formSchema = z.object({
   signType: z.string().min(1),
@@ -86,6 +95,30 @@ export function MultiStepContactForm() {
   ];
 
   useEffect(() => {
+    // Check for an image from the AI section when the component mounts
+    if (window.__DESIGN_IMAGE_TO_QUOTE__) {
+      const imageUrl = window.__DESIGN_IMAGE_TO_QUOTE__;
+      form.setValue('imageAttachment', imageUrl);
+      
+      const imageMessageContent = (
+        <div className="flex flex-col gap-2">
+          <p>¡Excelente! Usaremos esta imagen como referencia.</p>
+          <Image src={imageUrl} alt="Diseño de referencia" width={100} height={100} className="rounded-md"/>
+        </div>
+      );
+
+      setMessages(prev => [
+        ...prev,
+        { id: Date.now() + 1, sender: 'bot', content: imageMessageContent },
+      ]);
+      
+      // Skip the image upload step and idea description
+      setCurrentStep(3); 
+      window.__DESIGN_IMAGE_TO_QUOTE__ = null; // Clear the global variable
+      return;
+    }
+
+
     if (currentStep < steps.length) {
       const currentField = steps[currentStep].field;
       const fieldValue = currentField ? form.getValues(currentField) : undefined;
@@ -116,7 +149,7 @@ export function MultiStepContactForm() {
     form.setValue(field, value);
     let displayContent: React.ReactNode;
 
-    if (field === 'imageAttachment' && value?.[0]) {
+    if (field === 'imageAttachment' && typeof value !== 'string' && value?.[0]) {
       displayContent = `Archivo: ${value[0].name}`;
     } else if (field === 'signType') {
       displayContent = signOptions.find(opt => opt.value === value)?.label || '';
@@ -150,10 +183,15 @@ export function MultiStepContactForm() {
     setIsTyping(true);
      setTimeout(async () => {
       try {
+        let imageToSend = data.imageAttachment;
+        if(data.imageAttachment && typeof data.imageAttachment !== 'string') {
+          imageToSend = data.imageAttachment?.[0]?.name;
+        }
+
         await handleFormSubmission({
           ...data,
           usageType: 'business',
-          imageAttachment: data.imageAttachment?.[0]?.name,
+          imageAttachment: imageToSend,
         });
 
         setIsTyping(false);
@@ -299,6 +337,7 @@ const TextInputComponent = ({ field, placeholder, onSend, onSkip, type = 'text',
         e.preventDefault();
         if (value.trim() || !onSkip) {
             onSend(field, value);
+            setValue('');
         } else if (onSkip) {
             onSkip();
         }
@@ -347,6 +386,7 @@ const FileInputComponent = ({ field, onSend, onSkip, error }: FileInputProps) =>
                 ref={fileInputRef}
                 onChange={handleFileChange}
                 className="hidden"
+                accept="image/*"
             />
             <Button
                 type="button"
@@ -369,3 +409,4 @@ const FileInputComponent = ({ field, onSend, onSkip, error }: FileInputProps) =>
         </div>
     );
 }
+```

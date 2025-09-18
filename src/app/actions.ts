@@ -27,10 +27,15 @@ export async function handleFormSubmission(data: z.infer<typeof formSchema>) {
   // In a real application, you would handle the data here:
   // - Save to a database
   // - Send an email notification
-  // - Handle file uploads to a storage service (e.g., Firebase Storage)
+  // - If imageAttachment is a data URI, save it to a storage service (e.g., Firebase Storage)
+  // - If it's a file name, you would have handled the upload separately.
 
   console.log('New B2B Quote Request Received:');
   console.log(parsedData.data);
+  if (typeof parsedData.data.imageAttachment === 'string' && parsedData.data.imageAttachment.startsWith('data:image')) {
+    console.log('Image attached as data URI.');
+  }
+
 
   // Simulate a network delay
   await new Promise(resolve => setTimeout(resolve, 1000));

@@ -20,7 +20,7 @@ const AiDesignSuggestionsOutputSchema = z.object({
   designElements: z.string().describe('Suggested neon LED design elements.'),
   layoutSuggestions: z.string().describe('Suggestions for the layout of the neon LED design.'),
   colorSchemeSuggestions: z.string().describe('Suggested color schemes for the neon LED design.'),
-  seoKeywords: z.string().describe('Relevant SEO keywords to help visualize potential applications.'),
+  imageUrl: z.string().describe('A data URI of a generated image representing the design concept.'),
 });
 export type AiDesignSuggestionsOutput = z.infer<typeof AiDesignSuggestionsOutputSchema>;
 
@@ -28,11 +28,17 @@ export async function aiDesignSuggestions(input: AiDesignSuggestionsInput): Prom
   return aiDesignSuggestionsFlow(input);
 }
 
-const prompt = ai.definePrompt({
+const suggestionsPrompt = ai.definePrompt({
   name: 'aiDesignSuggestionsPrompt',
   input: {schema: AiDesignSuggestionsInputSchema},
-  output: {schema: AiDesignSuggestionsOutputSchema},
-  prompt: `You are an AI assistant specializing in neon LED design. A user will provide a description of their business, product, desired mood, or general idea for their space. Based on this information, suggest tailored neon LED design elements, layouts, color schemes, and relevant SEO keywords.
+  output: {
+    schema: AiDesignSuggestionsOutputSchema.pick({
+      designElements: true,
+      layoutSuggestions: true,
+      colorSchemeSuggestions: true,
+    }),
+  },
+  prompt: `You are an AI assistant specializing in neon LED design. A user will provide a description of their business, product, desired mood, or general idea for their space. Based on this information, suggest tailored neon LED design elements, layouts, and color schemes.
 
 User's Idea: {{{prompt}}}
 
@@ -40,8 +46,7 @@ Provide the suggestions in a clear and concise manner.
 
 Design Elements: 
 Layout Suggestions: 
-Color Scheme Suggestions: 
-SEO Keywords: `,
+Color Scheme Suggestions:`,
 });
 
 const aiDesignSuggestionsFlow = ai.defineFlow(
@@ -51,7 +56,23 @@ const aiDesignSuggestionsFlow = ai.defineFlow(
     outputSchema: AiDesignSuggestionsOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    const [suggestionsResponse, imageResponse] = await Promise.all([
+      suggestionsPrompt(input),
+      ai.generate({
+        model: 'googleai/imagen-4.0-fast-generate-001',
+        prompt: `Generate a high-quality, photorealistic image of a neon LED sign based on the following description. The sign should be the main focus, well-lit, and in an appropriate setting (like a store, office, or cafe wall). Description: ${input.prompt}`,
+        config: {
+          aspectRatio: '1:1',
+        },
+      }),
+    ]);
+
+    const suggestions = suggestionsResponse.output!;
+    const imageUrl = imageResponse.media.url;
+
+    return {
+      ...suggestions,
+      imageUrl,
+    };
   }
 );
