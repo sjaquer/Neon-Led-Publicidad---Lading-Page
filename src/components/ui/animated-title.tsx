@@ -46,7 +46,7 @@ export function AnimatedTitle({
     <div
       ref={ref}
       className={cn(
-        'relative flex items-center justify-center mb-4 w-full',
+        'relative flex items-center justify-center mb-4 w-full overflow-hidden',
         className
       )}
     >
