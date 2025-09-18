@@ -51,25 +51,26 @@ export function AnimatedTitle({
       )}
     >
       <motion.div
-        className="absolute left-0 bottom-0 h-0.5 bg-primary w-1/4"
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        variants={lineVariants}
-        style={{ originX: 0 }}
-      />
-      <motion.div
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        variants={textVariants}
-      >
-        <Component className="font-headline">{children}</Component>
-      </motion.div>
-      <motion.div
-        className="absolute right-0 top-0 h-0.5 bg-primary w-1/4"
+        className="h-0.5 bg-primary flex-grow"
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
         variants={lineVariants}
         style={{ originX: 1 }}
+      />
+      <motion.div
+        className="px-4"
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        variants={textVariants}
+      >
+        <Component className="font-headline whitespace-nowrap">{children}</Component>
+      </motion.div>
+      <motion.div
+        className="h-0.5 bg-primary flex-grow"
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        variants={lineVariants}
+        style={{ originX: 0 }}
       />
     </div>
   );
