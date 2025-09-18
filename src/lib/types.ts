@@ -4,4 +4,5 @@ export type Testimonial = {
   role: string;
   clientImage: string;
   companyLogo?: string;
+  type: 'business' | 'personal';
 };

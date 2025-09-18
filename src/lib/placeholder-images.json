@@ -32,28 +32,28 @@
       "imageHint": "neon bar"
     },
     {
-      "id": "showcase-personal-1",
-      "description": "Custom neon name sign in a bedroom",
-      "imageUrl": "https://picsum.photos/seed/p1/600/800",
-      "imageHint": "neon bedroom"
+      "id": "showcase-business-5",
+      "description": "Custom neon sign for a tech startup",
+      "imageUrl": "https://picsum.photos/seed/b5/800/600",
+      "imageHint": "neon startup"
     },
     {
-      "id": "showcase-personal-2",
-      "description": "Neon quote sign in a living room",
-      "imageUrl": "https://picsum.photos/seed/p2/600/800",
-      "imageHint": "neon livingroom"
+      "id": "showcase-business-6",
+      "description": "Directional neon sign in a co-working space",
+      "imageUrl": "https://picsum.photos/seed/b6/600/800",
+      "imageHint": "neon coworking"
     },
     {
-      "id": "showcase-personal-3",
-      "description": "'Game on' neon sign for a gaming setup",
-      "imageUrl": "https://picsum.photos/seed/p3/600/800",
-      "imageHint": "neon gaming"
+      "id": "showcase-business-7",
+      "description": "Neon sign in a restaurant kitchen",
+      "imageUrl": "https://picsum.photos/seed/b7/800/600",
+      "imageHint": "neon restaurant"
     },
     {
-      "id": "showcase-personal-4",
-      "description": "Neon sign for a wedding event",
-      "imageUrl": "https://picsum.photos/seed/p4/600/800",
-      "imageHint": "neon wedding"
+      "id": "showcase-business-8",
+      "description": "Branded neon sign in a fitness studio",
+      "imageUrl": "https://picsum.photos/seed/b8/600/800",
+      "imageHint": "neon gym"
     },
     {
       "id": "testimonial-client-1",

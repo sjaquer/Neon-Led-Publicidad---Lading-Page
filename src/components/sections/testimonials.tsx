@@ -23,6 +23,7 @@ const testimonials: Testimonial[] = [
     role: 'Dueña, "El Rincón del Café"',
     clientImage: 'testimonial-client-1',
     companyLogo: 'testimonial-logo-1',
+    type: 'business',
   },
   {
     quote:
@@ -31,6 +32,7 @@ const testimonials: Testimonial[] = [
     role: 'CEO, "Innovatech Solutions"',
     clientImage: 'testimonial-client-2',
     companyLogo: 'testimonial-logo-2',
+    type: 'business',
   },
   {
     quote:
@@ -38,8 +40,11 @@ const testimonials: Testimonial[] = [
     name: 'Laura Fernandez',
     role: 'Diseñadora de Interiores',
     clientImage: 'testimonial-client-3',
+    type: 'personal',
   },
 ];
+
+const businessTestimonials = testimonials.filter(t => t.type === 'business');
 
 export function Testimonials() {
   return (
@@ -53,8 +58,8 @@ export function Testimonials() {
             Lo que dicen nuestros clientes
           </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Historias de éxito de clientes que han iluminado sus espacios y
-            negocios con nosotros.
+            Historias de éxito de negocios que han iluminado sus espacios con
+            nosotros.
           </p>
         </div>
         <Carousel
@@ -70,7 +75,7 @@ export function Testimonials() {
           className="w-full max-w-4xl mx-auto mt-12"
         >
           <CarouselContent>
-            {testimonials.map((testimonial, index) => {
+            {businessTestimonials.map((testimonial, index) => {
               const clientImage = PlaceHolderImages.find(
                 (img) => img.id === testimonial.clientImage
               );

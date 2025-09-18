@@ -22,19 +22,19 @@ export function HeroSection() {
       <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
         <h1 className="font-headline text-4xl font-extrabold tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
           <span className="block drop-shadow-[0_0_8px_hsl(var(--primary))]">
-            Convierte tu idea
+            Transforma tu negocio
           </span>
           <span className="block text-primary drop-shadow-[0_0_8px_hsl(var(--primary))]">
-            en un increíble letrero de neón
+            con letreros de neón impactantes
           </span>
         </h1>
         <p className="mx-auto mt-6 max-w-lg text-lg text-gray-200 sm:max-w-xl md:text-xl">
-          Materializamos tus ideas con diseños personalizados que transforman tus
-          espacios con estilo y personalidad.
+          Creamos soluciones visuales personalizadas que elevan tu marca y
+          atraen más clientes.
         </p>
         <div className="mt-10">
           <Button asChild size="lg" variant="secondary">
-            <Link href="#contact-form">Cotiza tu diseño</Link>
+            <Link href="#contact-form">Cotiza tu proyecto</Link>
           </Button>
         </div>
       </div>

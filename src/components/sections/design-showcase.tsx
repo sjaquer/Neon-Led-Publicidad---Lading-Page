@@ -2,16 +2,12 @@
 
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart } from 'lucide-react';
 import { AnimatedTitle } from '../ui/animated-title';
 
 const businessImages = PlaceHolderImages.filter((img) =>
   img.id.startsWith('showcase-business')
-);
-const personalImages = PlaceHolderImages.filter((img) =>
-  img.id.startsWith('showcase-personal')
 );
 
 export function DesignShowcase() {
@@ -52,25 +48,14 @@ export function DesignShowcase() {
             as="h2"
             className="text-4xl font-extrabold tracking-tight sm:text-5xl"
           >
-            Galería de Diseños Personalizados
+            Galería de Proyectos Comerciales
           </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Inspírate con nuestros proyectos. Desde negocios que buscan
-            destacar hasta hogares con un toque único.
+            Inspírate con nuestros proyectos para negocios que buscan destacar y
+            crear ambientes únicos.
           </p>
         </div>
-        <Tabs defaultValue="business" className="mt-12">
-          <TabsList className="grid w-full grid-cols-2 md:w-1/2 mx-auto">
-            <TabsTrigger value="business">Para Negocios</TabsTrigger>
-            <TabsTrigger value="personal">Para el Hogar</TabsTrigger>
-          </TabsList>
-          <TabsContent value="business" className="mt-8">
-            {renderGallery(businessImages)}
-          </TabsContent>
-          <TabsContent value="personal" className="mt-8">
-            {renderGallery(personalImages)}
-          </TabsContent>
-        </Tabs>
+        <div className="mt-12">{renderGallery(businessImages)}</div>
       </div>
     </section>
   );

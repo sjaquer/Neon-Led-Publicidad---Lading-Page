@@ -23,18 +23,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { handleFormSubmission } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, CheckCircle, ArrowLeft } from 'lucide-react';
+import { Loader2, CheckCircle, ArrowLeft, Building } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 
 const formSchema = z.object({
-  usageType: z.enum(['business', 'personal'], {
-    required_error: 'Por favor, selecciona un tipo de uso.',
-  }),
   signType: z.string().min(1, 'Por favor, selecciona un tipo de letrero.'),
   ideaDescription: z.string().optional(),
   imageAttachment: z.any().optional(),
@@ -46,9 +42,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const steps = [
-  { id: 1, fields: ['usageType'] },
-  { id: 2, fields: ['signType', 'ideaDescription', 'imageAttachment'] },
-  { id: 3, fields: ['name', 'email', 'phone'] },
+  { id: 1, fields: ['signType', 'ideaDescription', 'imageAttachment'] },
+  { id: 2, fields: ['name', 'email', 'phone'] },
 ];
 
 export function MultiStepContactForm() {
@@ -60,7 +55,6 @@ export function MultiStepContactForm() {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      usageType: 'business',
       signType: '',
       ideaDescription: '',
       name: '',
@@ -91,6 +85,7 @@ export function MultiStepContactForm() {
       // A real implementation would require a file storage service.
       await handleFormSubmission({
         ...data,
+        usageType: 'business', // Hardcoded to business
         imageAttachment: data.imageAttachment?.[0]?.name,
       });
       setIsSubmitted(true);
@@ -136,44 +131,10 @@ export function MultiStepContactForm() {
                 transition={{ duration: 0.3 }}
               >
                 {currentStep === 0 && (
-                  <FormField
-                    control={form.control}
-                    name="usageType"
-                    render={({ field }) => (
-                      <FormItem className="space-y-3">
-                        <FormLabel className="font-headline text-lg">
-                          1. ¿Para qué usarás tu letrero?
-                        </FormLabel>
-                        <FormControl>
-                          <RadioGroup
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                            className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                          >
-                            <FormItem>
-                              <Label className="flex items-center gap-4 p-4 border rounded-md cursor-pointer hover:bg-muted has-[[data-state=checked]]:border-primary">
-                                <RadioGroupItem value="business" id="r1" />
-                                <span>Para mi negocio</span>
-                              </Label>
-                            </FormItem>
-                            <FormItem>
-                               <Label className="flex items-center gap-4 p-4 border rounded-md cursor-pointer hover:bg-muted has-[[data-state=checked]]:border-primary">
-                                <RadioGroupItem value="personal" id="r2" />
-                                <span>Para uso personal (hogar, evento)</span>
-                                </Label>
-                            </FormItem>
-                          </RadioGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                )}
-
-                {currentStep === 1 && (
                   <div className="space-y-6">
-                    <FormLabel className="font-headline text-lg">
-                      2. Cuéntanos sobre tu idea
+                    <FormLabel className="font-headline text-lg flex items-center gap-2">
+                      <Building className="w-5 h-5" />
+                      1. Cuéntanos sobre el proyecto para tu negocio
                     </FormLabel>
                     <FormField
                       control={form.control}
@@ -211,7 +172,7 @@ export function MultiStepContactForm() {
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Ej: Quiero un letrero que diga 'Good Vibes Only' en una tipografía cursiva, color rosa."
+                              placeholder="Ej: Quiero el logo de mi empresa en neón para la recepción."
                               {...field}
                             />
                           </FormControl>
@@ -235,10 +196,10 @@ export function MultiStepContactForm() {
                   </div>
                 )}
 
-                {currentStep === 2 && (
+                {currentStep === 1 && (
                   <div className="space-y-6">
                      <FormLabel className="font-headline text-lg">
-                      3. Información de Contacto
+                      2. Información de Contacto
                     </FormLabel>
                     <FormField
                       control={form.control}
@@ -291,12 +252,14 @@ export function MultiStepContactForm() {
             </AnimatePresence>
 
             <div className="mt-8 flex justify-between">
-              {currentStep > 0 && (
+              {currentStep > 0 ? (
                 <Button type="button" variant="outline" onClick={prevStep}>
                   <ArrowLeft className="mr-2 h-4 w-4" /> Anterior
                 </Button>
+              ) : (
+                <div /> // Placeholder to keep the 'Next' button on the right
               )}
-              <div className={currentStep === 0 ? 'w-full text-right' : ''}>
+              <div>
                 {currentStep < steps.length - 1 ? (
                   <Button type="button" onClick={nextStep}>
                     Siguiente

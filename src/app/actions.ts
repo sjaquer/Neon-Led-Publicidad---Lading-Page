@@ -13,10 +13,15 @@ const formSchema = z.object({
 });
 
 export async function handleFormSubmission(data: z.infer<typeof formSchema>) {
-  const parsedData = formSchema.safeParse(data);
+  // This schema is now used for server-side validation only
+  const b2bSchema = formSchema.extend({
+    usageType: z.literal('business'),
+  });
+
+  const parsedData = b2bSchema.safeParse(data);
 
   if (!parsedData.success) {
-    throw new Error('Invalid form data.');
+    throw new Error('Invalid form data. Only business submissions are accepted.');
   }
 
   // In a real application, you would handle the data here:
@@ -24,7 +29,7 @@ export async function handleFormSubmission(data: z.infer<typeof formSchema>) {
   // - Send an email notification
   // - Handle file uploads to a storage service (e.g., Firebase Storage)
 
-  console.log('New Quote Request Received:');
+  console.log('New B2B Quote Request Received:');
   console.log(parsedData.data);
 
   // Simulate a network delay
