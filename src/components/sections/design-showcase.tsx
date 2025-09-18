@@ -5,6 +5,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart } from 'lucide-react';
+import { AnimatedTitle } from '../ui/animated-title';
 
 const businessImages = PlaceHolderImages.filter((img) =>
   img.id.startsWith('showcase-business')
@@ -44,12 +45,15 @@ export function DesignShowcase() {
   );
 
   return (
-    <section id="design-showcase" className="py-16 sm:py-24 bg-card">
-      <div className="container">
+    <section id="design-showcase" className="py-16 sm:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center">
-          <h2 className="font-headline text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <AnimatedTitle
+            as="h2"
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl"
+          >
             Galería de Diseños Personalizados
-          </h2>
+          </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             Inspírate con nuestros proyectos. Desde negocios que buscan
             destacar hasta hogares con un toque único.

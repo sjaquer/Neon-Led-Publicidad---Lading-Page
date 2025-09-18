@@ -12,7 +12,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Testimonial } from '@/lib/types';
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from 'embla-carousel-autoplay';
+import { AnimatedTitle } from '../ui/animated-title';
 
 const testimonials: Testimonial[] = [
   {
@@ -43,11 +44,14 @@ const testimonials: Testimonial[] = [
 export function Testimonials() {
   return (
     <section className="py-16 sm:py-24">
-      <div className="container">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center">
-          <h2 className="font-headline text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <AnimatedTitle
+            as="h2"
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl"
+          >
             Lo que dicen nuestros clientes
-          </h2>
+          </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             Historias de éxito de clientes que han iluminado sus espacios y
             negocios con nosotros.
@@ -71,7 +75,9 @@ export function Testimonials() {
                 (img) => img.id === testimonial.clientImage
               );
               const companyLogo = testimonial.companyLogo
-                ? PlaceHolderImages.find((img) => img.id === testimonial.companyLogo)
+                ? PlaceHolderImages.find(
+                    (img) => img.id === testimonial.companyLogo
+                  )
                 : undefined;
 
               return (

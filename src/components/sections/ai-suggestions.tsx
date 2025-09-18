@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, Wand2, Layout, Palette, Tags } from 'lucide-react';
+import { AnimatedTitle } from '../ui/animated-title';
 
 const formSchema = z.object({
   businessDetails: z
@@ -61,20 +62,41 @@ export function AiSuggestions() {
     }
   };
 
-  const suggestionCards = result ? [
-    { icon: Wand2, title: 'Elementos de Diseño', content: result.designElements },
-    { icon: Layout, title: 'Sugerencias de Layout', content: result.layoutSuggestions },
-    { icon: Palette, title: 'Esquemas de Color', content: result.colorSchemeSuggestions },
-    { icon: Tags, title: 'Palabras Clave SEO', content: result.seoKeywords },
-  ] : [];
+  const suggestionCards = result
+    ? [
+        {
+          icon: Wand2,
+          title: 'Elementos de Diseño',
+          content: result.designElements,
+        },
+        {
+          icon: Layout,
+          title: 'Sugerencias de Layout',
+          content: result.layoutSuggestions,
+        },
+        {
+          icon: Palette,
+          title: 'Esquemas de Color',
+          content: result.colorSchemeSuggestions,
+        },
+        {
+          icon: Tags,
+          title: 'Palabras Clave SEO',
+          content: result.seoKeywords,
+        },
+      ]
+    : [];
 
   return (
-    <section className="py-16 sm:py-24 bg-card">
-      <div className="container">
+    <section className="py-16 sm:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center">
-          <h2 className="font-headline text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <AnimatedTitle
+            as="h2"
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl"
+          >
             Obtén Sugerencias de Diseño con IA
-          </h2>
+          </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             ¿No estás seguro por dónde empezar? Describe tu idea y deja que
             nuestra IA te inspire con conceptos de diseño personalizados.
@@ -83,7 +105,9 @@ export function AiSuggestions() {
         <div className="mt-12 max-w-2xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle className="font-headline text-xl">Generador de Ideas</CardTitle>
+              <CardTitle className="font-headline text-xl">
+                Generador de Ideas
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <Form {...form}>
@@ -159,25 +183,31 @@ export function AiSuggestions() {
           {loading && (
             <div className="mt-8 text-center">
               <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
-              <p className="mt-2 text-muted-foreground">Nuestra IA está creando magia...</p>
+              <p className="mt-2 text-muted-foreground">
+                Nuestra IA está creando magia...
+              </p>
             </div>
           )}
           {result && (
             <div className="mt-12 space-y-6">
-                <h3 className="text-center font-headline text-2xl font-bold">¡Aquí tienes tus sugerencias!</h3>
-                <div className="grid gap-6 sm:grid-cols-2">
-                    {suggestionCards.map((card, index) => (
-                        <Card key={index} className="flex flex-col">
-                            <CardHeader className="flex-row items-center gap-4 space-y-0">
-                                <card.icon className="w-8 h-8 text-primary"/>
-                                <CardTitle className="font-headline text-lg">{card.title}</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground">{card.content}</p>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
+              <h3 className="text-center font-headline text-2xl font-bold">
+                ¡Aquí tienes tus sugerencias!
+              </h3>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {suggestionCards.map((card, index) => (
+                  <Card key={index} className="flex flex-col">
+                    <CardHeader className="flex-row items-center gap-4 space-y-0">
+                      <card.icon className="w-8 h-8 text-primary" />
+                      <CardTitle className="font-headline text-lg">
+                        {card.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{card.content}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           )}
         </div>

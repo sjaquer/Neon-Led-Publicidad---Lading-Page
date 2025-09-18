@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { AnimatedTitle } from '../ui/animated-title';
 
 const faqItems = [
   {
@@ -36,11 +37,14 @@ const faqItems = [
 export function Faq() {
   return (
     <section className="py-16 sm:py-24">
-      <div className="container">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center">
-          <h2 className="font-headline text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <AnimatedTitle
+            as="h2"
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl"
+          >
             Preguntas Frecuentes
-          </h2>
+          </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             ¿Tienes dudas? Aquí resolvemos las preguntas más comunes de nuestros
             clientes.

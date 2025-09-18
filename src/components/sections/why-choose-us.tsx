@@ -6,6 +6,7 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { AnimatedTitle } from '../ui/animated-title';
 
 const features = [
   {
@@ -43,19 +44,27 @@ const features = [
 export function WhyChooseUs() {
   return (
     <section id="why-choose-us" className="py-16 sm:py-24">
-      <div className="container">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center">
-          <h2 className="font-headline text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <AnimatedTitle
+            as="h2"
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl"
+          >
             ¿Por qué elegirnos?
-          </h2>
+          </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             Estamos comprometidos con la calidad, la innovación y la satisfacción
             de nuestros clientes.
           </p>
         </div>
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <Card key={feature.title} className="text-center transition-all duration-300 hover:bg-card/80 hover:-translate-y-1">
+          {features.map((feature, index) => (
+            <Card
+              key={feature.title}
+              className={`text-center transition-all duration-300 hover:bg-card/80 hover:-translate-y-1 ${
+                index === features.length - 1 ? 'lg:col-start-2' : ''
+              }`}
+            >
               <CardHeader>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                   <feature.icon className="h-6 w-6 text-primary drop-shadow-[0_0_4px_hsl(var(--primary))]" />
