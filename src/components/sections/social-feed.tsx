@@ -22,14 +22,13 @@ export function SocialFeed() {
         </div>
         <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
           {socialImages.map((image) => (
-            <Link key={image.id} href="#" target="_blank" rel="noopener noreferrer" className="group relative block overflow-hidden rounded-lg">
+            <Link key={image.id} href="#" target="_blank" rel="noopener noreferrer" className="group relative block overflow-hidden rounded-lg aspect-square">
                 <Image
                   src={image.imageUrl}
                   alt={image.description}
                   data-ai-hint={image.imageHint}
-                  width={500}
-                  height={500}
-                  className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <Instagram className="h-10 w-10 text-white" />
@@ -38,7 +37,7 @@ export function SocialFeed() {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Button asChild size="lg" variant="secondary">
+          <Button asChild size="lg">
             <Link href="#" target="_blank" rel="noopener noreferrer">
               <Instagram className="mr-2 h-5 w-5" />
               Síguenos en Instagram

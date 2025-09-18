@@ -42,7 +42,7 @@ const features = [
 
 export function WhyChooseUs() {
   return (
-    <section className="py-16 sm:py-24">
+    <section id="why-choose-us" className="py-16 sm:py-24">
       <div className="container">
         <div className="text-center">
           <h2 className="font-headline text-3xl font-extrabold tracking-tight sm:text-4xl">
@@ -54,25 +54,8 @@ export function WhyChooseUs() {
           </p>
         </div>
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {features.slice(0, 3).map((feature) => (
-            <Card key={feature.title} className="text-center">
-              <CardHeader>
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <feature.icon className="h-6 w-6 text-primary drop-shadow-[0_0_4px_hsl(var(--primary))]" />
-                </div>
-                <CardTitle className="font-headline text-xl">
-                  {feature.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-2 lg:w-2/3 lg:mx-auto">
-          {features.slice(3).map((feature) => (
-            <Card key={feature.title} className="text-center">
+          {features.map((feature) => (
+            <Card key={feature.title} className="text-center transition-all duration-300 hover:bg-card/80 hover:-translate-y-1">
               <CardHeader>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                   <feature.icon className="h-6 w-6 text-primary drop-shadow-[0_0_4px_hsl(var(--primary))]" />

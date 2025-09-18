@@ -1,5 +1,5 @@
 import { FileText, Pencil, Factory, Rocket } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const processSteps = [
   {
@@ -30,7 +30,7 @@ const processSteps = [
 
 export function PurchaseProcess() {
   return (
-    <section className="py-16 sm:py-24">
+    <section id="purchase-process" className="py-16 sm:py-24">
       <div className="container">
         <div className="text-center">
           <h2 className="font-headline text-3xl font-extrabold tracking-tight sm:text-4xl">
@@ -42,26 +42,22 @@ export function PurchaseProcess() {
           </p>
         </div>
         <div className="relative mt-12">
-          <div className="absolute left-1/2 top-10 hidden h-[calc(100%-5rem)] w-0.5 -translate-x-1/2 bg-border md:block"></div>
-          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div className="absolute left-0 top-1/2 hidden h-0.5 w-full -translate-y-1/2 bg-border md:block" />
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 relative">
             {processSteps.map((item) => (
-              <Card
-                key={item.step}
-                className="relative overflow-hidden border-2 border-primary/20 bg-card p-6 shadow-lg transition-all hover:border-primary/50 hover:shadow-primary/10"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-xl font-bold">
-                    {item.step}
-                  </div>
-                  <item.icon className="h-8 w-8 text-primary" />
+             <div key={item.step} className="relative flex flex-col items-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold border-4 border-background z-10">
+                    <item.icon className="h-8 w-8" />
                 </div>
-                <h3 className="mt-6 font-headline text-xl font-semibold">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-muted-foreground">
-                  {item.description}
-                </p>
-              </Card>
+                <div className="text-center mt-4">
+                  <h3 className="font-headline text-xl font-semibold">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

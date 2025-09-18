@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
+import { navLinks } from '@/lib/data';
 
 export function Header() {
   return (
@@ -9,11 +10,22 @@ export function Header() {
         <Link href="/" aria-label="Página de inicio de NeonLed Studios">
           <Logo />
         </Link>
-        <nav className="flex items-center gap-4">
+        <nav className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex items-center gap-4">
           <Button asChild>
             <Link href="#contact-form">Cotiza Ahora</Link>
           </Button>
-        </nav>
+        </div>
       </div>
     </header>
   );
