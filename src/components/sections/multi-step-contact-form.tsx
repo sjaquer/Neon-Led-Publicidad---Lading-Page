@@ -60,27 +60,27 @@ export function MultiStepContactForm() {
 
   const steps: Omit<Message, 'id' | 'sender'>[] = [
     {
-      content: '¡Hola! Soy tu asistente de diseño. Para empezar, ¿qué tipo de letrero tienes en mente para tu negocio?',
+      content: '¡Hola! Soy tu asistente de diseño. Estoy aquí para ayudarte a dar vida a tu idea. Para empezar, ¿qué tipo de letrero te imaginas?',
       field: 'signType',
     },
     {
-      content: 'Genial. Ahora, por favor describe tu idea. ¿Qué texto, figura o concepto te gustaría ver en neón?',
+      content: '¡Excelente elección! Ahora viene la parte divertida. Cuéntame tu idea. ¿Qué texto, figura o concepto te gustaría que convirtamos en neón?',
       field: 'ideaDescription',
     },
     {
-      content: 'Si tienes una imagen de referencia (como tu logo o una inspiración), puedes adjuntarla aquí. (Opcional)',
+      content: '¿Tienes alguna imagen de referencia? Puede ser tu logo, un boceto o algo que te inspire. Si no, no te preocupes, ¡podemos crearlo desde cero!',
       field: 'imageAttachment',
     },
     {
-      content: 'Perfecto. Para preparar tu cotización, ¿cuál es tu nombre completo?',
+      content: '¡Perfecto! Ya casi terminamos. Para preparar tu cotización, ¿cuál es tu nombre?',
       field: 'name',
     },
     {
-      content: 'Gracias. ¿A qué dirección de correo electrónico podemos enviarla?',
+      content: 'Mucho gusto. ¿A qué correo electrónico te gustaría que te enviemos el diseño y la cotización?',
       field: 'email',
     },
     {
-      content: 'Y por último, si deseas que te contactemos por WhatsApp, déjanos tu número. (Opcional)',
+      content: 'Y por último, si prefieres que te contactemos por WhatsApp para una atención más rápida, déjanos tu número. ¡Es opcional!',
       field: 'phone',
     },
   ];
@@ -98,7 +98,7 @@ export function MultiStepContactForm() {
             ...prev,
             { id: Date.now(), sender: 'bot', ...steps[currentStep] },
           ]);
-        }, 1200);
+        }, 1500);
       }
     } else if (!isSubmitting && !isSubmitted) {
         // All steps are complete, trigger submission
@@ -163,7 +163,7 @@ export function MultiStepContactForm() {
                 <div className="flex flex-col items-center text-center gap-2">
                   <CheckCircle className="h-8 w-8 text-green-400" />
                   <h3 className="font-bold">¡Solicitud Enviada!</h3>
-                  <p className="text-xs">Gracias por tu interés. Nos pondremos en contacto contigo en las próximas 24 horas con tu cotización.</p>
+                  <p className="text-xs">¡Gracias por confiar en nosotros! Tu idea ya está en camino. Revisaremos los detalles y te enviaremos la cotización a tu correo en menos de 24 horas.</p>
                 </div>
             )}
         ]);
@@ -172,7 +172,7 @@ export function MultiStepContactForm() {
       } catch (error) {
         toast({
           title: 'Error',
-          description: 'Hubo un problema al enviar tu solicitud. Inténtalo de nuevo.',
+          description: 'Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.',
           variant: 'destructive',
         });
         setIsTyping(false);
