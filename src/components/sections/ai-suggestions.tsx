@@ -87,11 +87,11 @@ export function AiSuggestions() {
             as="h2"
             className="text-4xl font-extrabold tracking-tight sm:text-5xl"
           >
-            Obtén Sugerencias de Diseño con IA
+            Tu Visión, Nuestra Inspiración
           </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            ¿No estás seguro por dónde empezar? Describe tu idea y deja que
-            nuestra IA te inspire con conceptos de diseño personalizados.
+            ¿No estás seguro por dónde empezar? Describe tu idea y deja que la
+            magia suceda. Te daremos conceptos de diseño personalizados.
           </p>
         </div>
         <div className="mt-12 max-w-2xl mx-auto">
