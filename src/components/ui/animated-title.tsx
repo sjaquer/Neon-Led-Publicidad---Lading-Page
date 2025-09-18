@@ -58,12 +58,12 @@ export function AnimatedTitle({
         style={{ originX: 1 }}
       />
       <motion.div
-        className="px-4"
+        className="px-4 text-center"
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
         variants={textVariants}
       >
-        <Component className="font-headline whitespace-nowrap">{children}</Component>
+        <Component className="font-headline">{children}</Component>
       </motion.div>
       <motion.div
         className="h-0.5 bg-primary flex-grow"
