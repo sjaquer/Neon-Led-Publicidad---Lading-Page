@@ -1,5 +1,4 @@
 import { FileText, Pencil, Factory, Rocket } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AnimatedTitle } from '../ui/animated-title';
 
 const processSteps = [
@@ -49,22 +48,23 @@ export function PurchaseProcess() {
             para hacer tu visión realidad.
           </p>
         </div>
-        <div className="relative mt-12">
-          <div className="absolute left-0 top-1/2 hidden h-0.5 w-full -translate-y-1/2 bg-border md:block" />
-          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 relative">
+        <div className="relative mt-20">
+          <div
+            className="absolute left-0 top-8 hidden h-0.5 w-full bg-border md:block"
+            aria-hidden="true"
+          />
+          <div className="grid gap-12 md:grid-cols-4 md:gap-8">
             {processSteps.map((item) => (
-              <div key={item.step} className="relative flex flex-col items-center">
+              <div key={item.step} className="relative flex flex-col items-center text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold border-4 border-background z-10">
                   <item.icon className="h-8 w-8" />
                 </div>
-                <div className="text-center mt-4">
-                  <h3 className="font-headline text-xl font-semibold">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
+                <h3 className="mt-6 font-headline text-xl font-semibold">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
