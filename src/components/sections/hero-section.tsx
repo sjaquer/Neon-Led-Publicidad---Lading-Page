@@ -22,7 +22,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl text-left">
-          <h1 className="font-headline text-5xl font-extrabold tracking-tight text-white drop-shadow-lg sm:text-6xl md:text-7xl">
+          <h1 className="font-headline text-5xl font-extrabold uppercase tracking-tight text-white drop-shadow-lg sm:text-6xl md:text-7xl">
             <span className="block drop-shadow-[0_0_8px_hsl(var(--primary))]">
               Transforma tu negocio
             </span>
@@ -35,7 +35,7 @@ export function HeroSection() {
             atraen más clientes.
           </p>
           <div className="mt-10">
-            <Button asChild size="lg" variant="secondary" className="group">
+            <Button asChild size="lg" className="group">
               <Link href="#contact-form">
                 Cotiza tu proyecto
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

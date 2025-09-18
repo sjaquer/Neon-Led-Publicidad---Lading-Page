@@ -40,6 +40,9 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="grid gap-4 py-6">
+                <Link href="/" className="mb-4">
+                  <Logo />
+                </Link>
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -49,7 +52,7 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                <Button asChild>
+                <Button asChild className="mt-4">
                   <Link href="#contact-form">Cotiza Ahora</Link>
                 </Button>
               </div>
