@@ -409,4 +409,3 @@ const FileInputComponent = ({ field, onSend, onSkip, error }: FileInputProps) =>
         </div>
     );
 }
-```
