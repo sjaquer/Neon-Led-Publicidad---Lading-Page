@@ -51,7 +51,7 @@ export function MultiStepContactForm() {
   const [isTyping, setIsTyping] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -107,7 +107,9 @@ export function MultiStepContactForm() {
   }, [currentStep]);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
   }, [messages, isTyping]);
 
   const handleUserInput = (field: keyof FormData, value: any) => {
@@ -220,7 +222,7 @@ export function MultiStepContactForm() {
   return (
     <Card className="neumorphic-flat bg-gray-900/50 backdrop-blur-sm border-gray-700/50 w-full max-w-lg mx-auto rounded-xl">
       <CardContent className="p-0">
-        <div className="p-4 h-96 flex flex-col space-y-4 overflow-y-auto">
+        <div ref={chatContainerRef} className="p-4 h-96 flex flex-col space-y-4 overflow-y-auto">
             <AnimatePresence>
                 {messages.map((msg) => (
                     <motion.div
@@ -270,7 +272,6 @@ export function MultiStepContactForm() {
                 </div>
             </motion.div>
           )}
-          <div ref={chatEndRef} />
         </div>
         <div className="border-t border-gray-700/50 p-2">
             {renderInputForStep()}
