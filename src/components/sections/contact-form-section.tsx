@@ -10,11 +10,11 @@ export function ContactFormSection() {
             as="h2"
             className="text-4xl font-extrabold tracking-tight sm:text-5xl"
           >
-            ¿Listo para iluminar tu idea?
+            Cotiza tu Diseño Personalizado
           </AnimatedTitle>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Completa nuestro formulario y obtén una cotización instantánea para
-            tu diseño de neón personalizado.
+            Llena nuestro formulario y nuestro equipo se pondrá en contacto
+            contigo para darle vida a tu idea.
           </p>
         </div>
         <div className="mx-auto mt-12 max-w-2xl">
