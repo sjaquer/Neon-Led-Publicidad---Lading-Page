@@ -4,24 +4,24 @@
 
 @layer base {
   :root {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-    --card: 220 40% 9%;
-    --card-foreground: 213 31% 91%;
-    --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
+    --background: 240 10% 3.9%;
+    --foreground: 210 40% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 210 40% 98%;
     --primary: 207 90% 61%;
-    --primary-foreground: 210 20% 98%;
+    --primary-foreground: 210 40% 98%;
     --secondary: 38 92% 50%;
     --secondary-foreground: 224 71% 4%;
-    --muted: 215 28% 17%;
+    --muted: 240 3.7% 15.9%;
     --muted-foreground: 215 20% 65%;
-    --accent: 215 28% 17%;
-    --accent-foreground: 213 31% 91%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
     --ring: 207 90% 61%;
     --radius: 0.75rem;
     --chart-1: 220 70% 50%;
@@ -29,49 +29,33 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 224 71% 4%;
-    --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 207 90% 61%;
-    --sidebar-primary-foreground: 210 20% 98%;
-    --sidebar-accent: 215 28% 17%;
-    --sidebar-accent-foreground: 213 31% 91%;
-    --sidebar-border: 215 28% 17%;
-    --sidebar-ring: 207 90% 61%;
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-    --card: 220 40% 9%;
-    --card-foreground: 213 31% 91%;
-    --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
+    --background: 240 10% 3.9%;
+    --foreground: 210 40% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 210 40% 98%;
     --primary: 207 90% 61%;
-    --primary-foreground: 210 20% 98%;
+    --primary-foreground: 210 40% 98%;
     --secondary: 38 92% 50%;
     --secondary-foreground: 224 71% 4%;
-    --muted: 215 28% 17%;
+    --muted: 240 3.7% 15.9%;
     --muted-foreground: 215 20% 65%;
-    --accent: 215 28% 17%;
-    --accent-foreground: 213 31% 91%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
     --ring: 207 90% 61%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 224 71% 4%;
-    --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 207 90% 61%;
-    --sidebar-primary-foreground: 210 20% 98%;
-    --sidebar-accent: 215 28% 17%;
-    --sidebar-accent-foreground: 213 31% 91%;
-    --sidebar-border: 215 28% 17%;
-    --sidebar-ring: 207 90% 61%;
   }
 }
 
@@ -104,4 +88,59 @@
   select {
     @apply font-body;
   }
+}
+
+@layer utilities {
+  .neumorphic-pressed {
+    box-shadow: inset 6px 6px 12px hsl(var(--background) / 0.6),
+      inset -6px -6px 12px hsl(var(--foreground) / 0.1);
+  }
+  .neumorphic-flat {
+    box-shadow: 6px 6px 12px hsl(var(--background) / 0.6),
+      -6px -6px 12px hsl(var(--foreground) / 0.1);
+  }
+  .text-glow {
+    text-shadow: 0 0 8px hsl(var(--primary) / 0.8),
+      0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .aurora-background {
+    position: relative;
+    overflow: hidden;
+    background-color: hsl(var(--background));
+  }
+
+  .aurora-background::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(
+        circle,
+        hsl(var(--primary) / 0.15) 0%,
+        transparent 30%
+      ),
+      radial-gradient(circle, hsl(var(--secondary) / 0.1) 0%, transparent 40%);
+    transform-origin: center;
+    transform: translate(-50%, -50%);
+    animation: aurora-spin 20s linear infinite;
+    will-change: transform;
+    z-index: 0;
+  }
+}
+
+@keyframes aurora-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.content-wrapper > * {
+  z-index: 10;
+  position: relative;
 }

@@ -8,25 +8,14 @@ export function HeroSection() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background');
 
   return (
-    <section className="relative h-[calc(100vh-4rem)] w-full flex items-center">
-      {heroImage && (
-        <Image
-          src={heroImage.imageUrl}
-          alt={heroImage.description}
-          data-ai-hint={heroImage.imageHint}
-          fill
-          className="object-cover"
-          priority
-        />
-      )}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative h-[calc(100vh-4rem)] w-full flex items-center aurora-background">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 content-wrapper">
         <div className="max-w-2xl text-left">
           <h1 className="font-headline text-5xl font-extrabold uppercase tracking-tight text-white drop-shadow-lg sm:text-6xl md:text-7xl">
-            <span className="block drop-shadow-[0_0_8px_hsl(var(--primary))]">
+            <span className="block text-glow">
               Transforma tu negocio
             </span>
-            <span className="block text-primary drop-shadow-[0_0_8px_hsl(var(--primary))]">
+            <span className="block text-primary text-glow">
               con letreros de neón impactantes
             </span>
           </h1>

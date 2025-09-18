@@ -43,12 +43,12 @@ const features = [
 
 export function WhyChooseUs() {
   return (
-    <section id="why-choose-us" className="py-16 sm:py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section id="why-choose-us" className="py-16 sm:py-24 aurora-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl content-wrapper">
         <div className="text-center">
           <AnimatedTitle
             as="h2"
-            className="text-4xl font-extrabold tracking-tight sm:text-5xl"
+            className="text-4xl font-extrabold tracking-tight sm:text-5xl text-glow"
           >
             ¿Por qué elegirnos?
           </AnimatedTitle>
@@ -61,15 +61,15 @@ export function WhyChooseUs() {
           {features.map((feature, index) => (
             <Card
               key={feature.title}
-              className={`text-center transition-all duration-300 hover:bg-card/80 hover:-translate-y-1 ${
-                index === features.length - 1 ? 'lg:col-start-2' : ''
+              className={`text-center transition-all duration-300 bg-transparent neumorphic-flat hover:-translate-y-1 ${
+                index === features.length - 1 && features.length % 2 !== 0 ? 'lg:col-start-2' : ''
               }`}
             >
               <CardHeader>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <feature.icon className="h-6 w-6 text-primary drop-shadow-[0_0_4px_hsl(var(--primary))]" />
+                  <feature.icon className="h-6 w-6 text-primary text-glow" />
                 </div>
-                <CardTitle className="font-headline text-xl">
+                <CardTitle className="font-headline text-xl text-glow">
                   {feature.title}
                 </CardTitle>
               </CardHeader>
