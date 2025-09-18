@@ -29,6 +29,7 @@ import { Progress } from '@/components/ui/progress';
 import { handleFormSubmission } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, CheckCircle, ArrowLeft } from 'lucide-react';
+import { Label } from '@/components/ui/label';
 
 const formSchema = z.object({
   usageType: z.enum(['business', 'personal'], {
