@@ -19,19 +19,19 @@ export function Header() {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={`${link.href}-${link.label}`}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
+              className={`text-base font-medium transition-colors hover:text-primary ${
                 link.href === '#' ? 'text-primary text-glow' : 'text-muted-foreground'
               }`}
             >
               {link.label}
             </Link>
           ))}
-           <Button asChild variant="ghost">
+           <Button asChild variant="ghost" size="lg">
             <Link href="#">Login</Link>
           </Button>
         </nav>
